@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VHBPCP-V0</string>
+    <string name="action_settings">Settings</string>
+    <string name="inviteConnexion">Identifiez-vous</string>
+    <string name="inviteSPs">Mes situations professionnelles :</string>
+    <string name="loginVisiteur">Login du visiteur</string>
+    <string name="boutonValider">Valider</string>
+    <string name="boutonAjouter">ajouter</string>
+    <string name="boutonRetour">Retour</string>
+    <string name="motPasseVisiteur">Votre mot de passe</string>
+    <string name="msgErrChampVide">Au moins un champ de saisie n\'est pas renseigné !</string>
+    <string name="msgErrConnexionInvalide">Login et/ou mot de passe invalide</string>
+    <string name="msgErrRecupSitPros">Erreur de récupération des situations professionnelles</string>
+    <string name="msgErrUpdateSitPro">Erreur de mise à jour de la situation professionnelle</string>
+    <string name="title_activity_sitpros">Situations professionnelles</string>
+    <string name="inviteLibcourt">Libellé court</string>
+    <string name="inviteDescriptif">Descriptif</string>
+    <string name="buttonUpdate">Modifier</string>
+    <string name="inviteLocalisation">Localisation</string>
+    <string name="inviteSource">Source</string>
+
+</resources>
