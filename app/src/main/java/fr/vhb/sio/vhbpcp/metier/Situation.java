@@ -18,10 +18,15 @@ public class Situation implements Parcelable{
 	private String codeSource;
 	private Date dateDebut;
 	private Date dateFin;
+	private int nbActivitees;
+	private int nbProductions;
+	private int nbCommentaires;
+
 	/**
 	 * Instancie une situation
 	 */
-	public Situation(String uneRef, String unLibcourt, String unDescriptif, String unCodeLocalisation,String unCodeSource, Date uneDateDebut, Date uneDateFin) {
+	public Situation(String uneRef, String unLibcourt, String unDescriptif, String unCodeLocalisation,String unCodeSource, Date uneDateDebut, Date uneDateFin,
+					 int nbActivitees, int nbProductions, int nbCommentaires) {
 		this.ref = uneRef;
 		this.libcourt = unLibcourt;
 		this.descriptif	= unDescriptif;
@@ -29,6 +34,9 @@ public class Situation implements Parcelable{
 		this.codeSource = unCodeSource;
 		this.dateDebut = uneDateDebut;
 		this.dateFin = uneDateFin;
+		this.nbActivitees = nbActivitees;
+		this.nbProductions = nbProductions;
+		this.nbCommentaires = nbCommentaires;
 	}
 	/**
 	 * Instancie une situation à partir d'un Parcel
@@ -183,4 +191,15 @@ public class Situation implements Parcelable{
 		}
 	};
 
+	public int getNbCommentaires() {
+		return nbCommentaires;
+	}
+
+	public int getNbProductions() {
+		return nbProductions;
+	}
+
+	public int getNbActivitees() {
+		return nbActivitees;
+	}
 }

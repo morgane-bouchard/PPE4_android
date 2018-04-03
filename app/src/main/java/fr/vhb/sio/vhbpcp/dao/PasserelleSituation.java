@@ -27,6 +27,8 @@ public class PasserelleSituation extends Passerelle {
 
 	public static final String URL_SITUATIONS_GET = URL_HOTE_WS + "WSSitPros/getByStudent";
     public static final String URL_SITUATION_UPDATE = URL_HOTE_WS + "WSSitPros/update";
+	private static String unLibCourt;
+
 	/**
 	 * Fournit la liste des situations professionnelles de l'étudiant spécifié
 	 * @return cette liste d'objets de classe Situation
@@ -45,7 +47,7 @@ public class PasserelleSituation extends Passerelle {
 			// on renvoie une exception si status différent de 0
 			controlStatus(unObjetJSON);
 
-			JSONArray lesSitPros = unObjetJSON.getJSONArray("sitpros");
+			JSONArray lesSitPros = unObjetJSON.getJSONArray("sitPros");
 
 			/* Exemple de situations professionnelles :
 					<depts>
@@ -86,12 +88,13 @@ public class PasserelleSituation extends Passerelle {
 			controlStatus(unObjetJSON);
 
 			// on met à jour la situation pour chaque caractéristique ayant subi une modification
-            laSituation.setLibcourt((laHashMapToUpdate.containsKey("libcourt")) ? laHashMapToUpdate.get("libcourt") : laSituation.getLibcourt());
+			unLibCourt = (laHashMapToUpdate.containsKey("libCourt")) ? laHashMapToUpdate.get("libCourt") : laSituation.getLibcourt();
+			laSituation.setLibcourt(unLibCourt);
             laSituation.setDescriptif((laHashMapToUpdate.containsKey("descriptif")) ? laHashMapToUpdate.get("descriptif") : laSituation.getDescriptif());
             laSituation.setCodeLocalisation((laHashMapToUpdate.containsKey("codeLocalisation")) ? laHashMapToUpdate.get("codeLocalisation") : laSituation.getCodeLocalisation());
             laSituation.setCodeSource((laHashMapToUpdate.containsKey("codeSource"))? laHashMapToUpdate.get("codeSource"):laSituation.getCodeSource());
-            laSituation.setDateDebut((laHashMapToUpdate.containsKey("datedebut")) ? Date.valueOf(laHashMapToUpdate.get("datedebut")) : laSituation.getDateDebut());
-            laSituation.setDateFin((laHashMapToUpdate.containsKey("datefin")) ? Date.valueOf(laHashMapToUpdate.get("datefin")) : laSituation.getDateFin());
+            laSituation.setDateDebut((laHashMapToUpdate.containsKey("dateDebut")) ? Date.valueOf(laHashMapToUpdate.get("dateDebut")) : laSituation.getDateDebut());
+            laSituation.setDateFin((laHashMapToUpdate.containsKey("dateFin")) ? Date.valueOf(laHashMapToUpdate.get("dateFin")) : laSituation.getDateFin());
 		}
 		catch (Exception ex) {
 			Log.e("Passerelle", "Erreur exception : \n" + ex.toString());
@@ -145,12 +148,12 @@ public class PasserelleSituation extends Passerelle {
         Situation uneSituation;
 
         uneRef = unObjetJSON.getString("ref");
-        unLibelle = unObjetJSON.getString("libcourt");
+        unLibelle = unObjetJSON.getString("libCourt");
         unDescriptif = unObjetJSON.getString("descriptif");
         unCodeLocalisation = unObjetJSON.getString("codeLocalisation");
         unCodeSource = unObjetJSON.getString("codeSource");
-        uneDateDebut = Date.valueOf(unObjetJSON.getString("datedebut"));
-        uneDateFin = Date.valueOf(unObjetJSON.getString("datefin"));
+        uneDateDebut = Date.valueOf(unObjetJSON.getString("dateDebut"));
+        uneDateFin = Date.valueOf(unObjetJSON.getString("dateFin"));
         uneSituation = new Situation (uneRef, unLibelle, unDescriptif, unCodeLocalisation, unCodeSource, uneDateDebut, uneDateFin);
 		return uneSituation;
 	}

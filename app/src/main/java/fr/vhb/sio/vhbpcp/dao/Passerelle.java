@@ -22,7 +22,7 @@ import fr.vhb.sio.vhbpcp.metier.Etudiant;
  */
 public class Passerelle {
 
-	public static String URL_HOTE_WS = "http://192.168.1.80/SIO2/WS_VHBPCP/index.php/";
+	public static String URL_HOTE_WS = "http://172.17.196.87/SIO2/geven/WS_VHBPCP/WS_VHBPCP/index.php/";
 
     /**
      * Retourne une requête HTTP de méthode GET à partir d'une URL donnée
@@ -113,7 +113,7 @@ public class Passerelle {
 	 * @return url complète
 	 */
 	protected static String getUrlComplete(String uneUrl, String login, String motPasse) throws UnsupportedEncodingException {
-        uneUrl += "/format/json/";
+        uneUrl += "/format/json";
         uneUrl += "/login/" + URLEncoder.encode(login, "UTF-8");
 		return uneUrl +  "/mdp/" + URLEncoder.encode(motPasse, "UTF-8") ;
 	}

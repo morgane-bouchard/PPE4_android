@@ -24,7 +24,7 @@ public class SituationsActivity extends Activity {
 	public static final int CODE_UPDATE = 1;
 	private ListView listViewSitPros;
 	private ArrayList<Situation> lesSitPros;
-	private ArrayAdapter<Situation> unAdaptateur;
+	private SituationsAdapter unAdaptateur;
 	/**
 	 * Méthode appelée lors de la création de l'activité
 	 */
@@ -116,7 +116,7 @@ public class SituationsActivity extends Activity {
 			}
 			else {
 				lesSitPros = (ArrayList<Situation>) result;
-				unAdaptateur = new ArrayAdapter<Situation>(SituationsActivity.this, android.R.layout.simple_list_item_1, lesSitPros);
+				unAdaptateur = new SituationsAdapter(SituationsActivity.this, R.layout.layout_liste_sp, lesSitPros);
 				// 	on associe l'adaptateur au composant ListView
 				listViewSitPros.setAdapter(unAdaptateur);
 			}
