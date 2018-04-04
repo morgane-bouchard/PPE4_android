@@ -3,6 +3,7 @@ package fr.vhb.sio.vhbpcp;
 import java.util.ArrayList;
 
 import fr.vhb.sio.vhbpcp.dao.PasserelleSituation;
+import fr.vhb.sio.vhbpcp.metier.Etudiant;
 import fr.vhb.sio.vhbpcp.metier.Situation;
 
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 /**
  * Classe gérant l'interface utilisateur d'une liste de situations professionnelles
@@ -25,6 +27,8 @@ public class SituationsActivity extends Activity {
 	private ListView listViewSitPros;
 	private ArrayList<Situation> lesSitPros;
 	private ArrayAdapter<Situation> unAdaptateur;
+	private Toolbar unTitre;
+	private String unNom, unPrenom;
 	/**
 	 * Méthode appelée lors de la création de l'activité
 	 */
@@ -72,6 +76,14 @@ public class SituationsActivity extends Activity {
 	private void initialisations() {
 		listViewSitPros = (ListView) findViewById(R.id.listViewSitPros);
 		listViewSitPros.setOnItemClickListener(new ListViewOnItemClick() );
+
+		PCPApplication monAppli;
+
+		Etudiant lEtudiant;
+
+		monAppli = (PCPApplication) SituationsActivity.this.getApplication();
+		lEtudiant = monAppli.getVisiteur();
+		this.setTitle(lEtudiant.getPrenom()+ " " + lEtudiant.getNom());
 		new SitProsGet().execute();
    	}    	
 		

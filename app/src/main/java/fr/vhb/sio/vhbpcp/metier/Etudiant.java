@@ -1,5 +1,7 @@
 package fr.vhb.sio.vhbpcp.metier;
 
+import java.io.Serializable;
+
 /**
  * Classe regroupant les caractéristiques d'un visiteur
  * @author sio2slam
@@ -12,11 +14,18 @@ public class Etudiant {
 	/**
 	 * Instancie un étudiant
 	 */
-	public Etudiant(String unLogin, String unMotPasse) {
+	public Etudiant(String unLogin, String unMotPasse){
 		this.login = unLogin;
 		this.motPasse = unMotPasse;
 		this.nom = "";
 		this.prenom = "";
+	}
+
+	public Etudiant(String unLogin, String unMotPasse, String unNom, String unPrenom){
+		this.login = unLogin;
+		this.motPasse = unMotPasse;
+		this.nom = unNom;
+		this.prenom = unPrenom;
 	}
 	/**
 	 * Fournit le login de l'étudiant

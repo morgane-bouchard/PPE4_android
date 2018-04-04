@@ -6,22 +6,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".SitProsActivity" >
+    tools:context=".SituationsActivity" >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textViewInviteSPs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/inviteSPs" />
+        android:text="@string/inviteSPs"
+        android:layout_below="@+id/toolbarTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ListView
         android:id="@+id/listViewSitPros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewInviteSPs"
         android:layout_below="@+id/textViewInviteSPs"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="22dp" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
     </ListView>
 
 </RelativeLayout>
