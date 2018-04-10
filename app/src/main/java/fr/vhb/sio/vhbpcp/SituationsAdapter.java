@@ -53,9 +53,9 @@ public class SituationsAdapter extends ArrayAdapter<Situation>
         // affecte le contenu des widgets d'après le contenu de l'élément reçu
         uneSituation = values.get(position);
         textViewLibelCourt.setText(uneSituation.getLibcourt());
-        textViewNbActivites.setText(uneSituation.getNbActivitees());
-        textViewNbProductions.setText(uneSituation.getNbProductions());
-        textViewNbCommentaires.setText(uneSituation.getNbCommentaires());
+        textViewNbActivites.setText("Nombre d'activités : " + String.valueOf(uneSituation.getNbActivitees()));
+        textViewNbProductions.setText("Nombre de productions : " + String.valueOf(uneSituation.getNbProductions()));
+        textViewNbCommentaires.setText("Nombre de commentaires : " + String.valueOf(uneSituation.getNbCommentaires()));
         return rowView;
 
     }

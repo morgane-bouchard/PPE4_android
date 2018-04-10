@@ -146,6 +146,7 @@ public class PasserelleSituation extends Passerelle {
 		String unLibelle, uneRef, unDescriptif, unCodeLocalisation, unCodeSource;
         Date uneDateDebut, uneDateFin;
         Situation uneSituation;
+		int nbActivitees, nbProductions, nbCommentaires;
 
         uneRef = unObjetJSON.getString("ref");
         unLibelle = unObjetJSON.getString("libCourt");
@@ -154,7 +155,12 @@ public class PasserelleSituation extends Passerelle {
         unCodeSource = unObjetJSON.getString("codeSource");
         uneDateDebut = Date.valueOf(unObjetJSON.getString("dateDebut"));
         uneDateFin = Date.valueOf(unObjetJSON.getString("dateFin"));
-        uneSituation = new Situation (uneRef, unLibelle, unDescriptif, unCodeLocalisation, unCodeSource, uneDateDebut, uneDateFin);
+		nbActivitees = unObjetJSON.getInt("nbActivites");
+		nbCommentaires = unObjetJSON.getInt("nbCommentaires");
+		nbProductions = unObjetJSON.getInt("nbProductions");
+        uneSituation = new Situation (uneRef, unLibelle, unDescriptif,
+										unCodeLocalisation, unCodeSource, uneDateDebut,
+										uneDateFin, nbActivitees, nbProductions, nbCommentaires);
 		return uneSituation;
 	}
 }

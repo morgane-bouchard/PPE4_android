@@ -99,6 +99,31 @@ public class Situation implements Parcelable{
 	public Date getDateFin() {
 		return this.dateFin;
 	}
+
+	/**
+	 * Fournit le nombre de commentaire de la situation
+	 * @return int
+	 */
+	public int getNbCommentaires() {
+		return nbCommentaires;
+	}
+
+	/**
+	 * Fournit le nombre de productions de la situation
+	 * @return int
+	 */
+	public int getNbProductions() {
+		return nbProductions;
+	}
+
+	/**
+	 * Fournit le nombre d'activitées de la situation
+	 * @return int
+	 */
+	public int getNbActivitees() {
+		return nbActivitees;
+	}
+
 	/**
 	 * Affecte le libellé court de la situation
 	 * @param unLibCourt
@@ -190,16 +215,4 @@ public class Situation implements Parcelable{
 			return new Situation[size];
 		}
 	};
-
-	public int getNbCommentaires() {
-		return nbCommentaires;
-	}
-
-	public int getNbProductions() {
-		return nbProductions;
-	}
-
-	public int getNbActivitees() {
-		return nbActivitees;
-	}
 }

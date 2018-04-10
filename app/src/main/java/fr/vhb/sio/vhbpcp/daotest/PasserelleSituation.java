@@ -22,11 +22,11 @@ public class PasserelleSituation {
         ArrayList<Situation> lesSPs;
         lesSPs = new ArrayList<Situation> ();
         Situation uneSituation;
-        uneSituation = new Situation("50", "Libellé court", "Descriptif très très long", "1", "3", Date.valueOf("2015-12-09"), Date.valueOf("2015-12-20"));
+        uneSituation = new Situation("50", "Libellé court", "Descriptif très très long", "1", "3", Date.valueOf("2015-12-09"), Date.valueOf("2015-12-20"), 0, 0, 0);
         lesSPs.add(uneSituation);
-        uneSituation = new Situation("55", "Libellé super court", "Descriptif super super long", "2", "2", Date.valueOf("2016-01-05"), Date.valueOf("2016-01-25"));
+        uneSituation = new Situation("55", "Libellé super court", "Descriptif super super long", "2", "2", Date.valueOf("2016-01-05"), Date.valueOf("2016-01-25"), 0,5,3);
         lesSPs.add(uneSituation);
-        uneSituation = new Situation("60", "Libellé archi court", "Descriptif archi archi long", "1", "4", Date.valueOf("2016-02-29"), Date.valueOf("2016-03-10"));
+        uneSituation = new Situation("60", "Libellé archi court", "Descriptif archi archi long", "1", "4", Date.valueOf("2016-02-29"), Date.valueOf("2016-03-10"),1,0,888);
         lesSPs.add(uneSituation);
 
         return lesSPs;

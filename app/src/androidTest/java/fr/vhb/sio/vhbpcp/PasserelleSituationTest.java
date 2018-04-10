@@ -33,6 +33,19 @@ public class PasserelleSituationTest extends TestCase {
 		assertEquals("TP Assistance", lesSituations.get(3).getLibcourt());
 		assertEquals("2", lesSituations.get(3).getCodeLocalisation());
 		assertEquals("3", lesSituations.get(3).getCodeSource());
+
+		//Test nbCommentaires à zéro
+		assertEquals(6, lesSituations.get(2).getNbActivitees());
+		assertEquals(6, lesSituations.get(2).getNbProductions());
+		assertEquals(0, lesSituations.get(2).getNbCommentaires());
+
+		//Test tout > 0
+		assertEquals(36, lesSituations.get(1).getNbActivitees());
+		assertEquals(36, lesSituations.get(1).getNbProductions());
+		assertEquals(36, lesSituations.get(1).getNbCommentaires());
+
+		//Test nbProductions à zero
+		assertEquals(0, lesSituations.get(3).getNbProductions());
 	}
 	public void testGetLesSituations_Aucune() throws Exception {
 		ArrayList<Situation> lesSituations;
