@@ -8,23 +8,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SituationsActivity" >
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:id="@+id/textViewInviteSPs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/inviteSPs"
-        android:layout_below="@+id/toolbarTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import fr.vhb.sio.vhbpcp.dao.PasserelleSituation;
+import fr.vhb.sio.vhbpcp.metier.Etudiant;
 import fr.vhb.sio.vhbpcp.metier.Localisation;
 import fr.vhb.sio.vhbpcp.metier.Situation;
 import fr.vhb.sio.vhbpcp.metier.Source;
@@ -73,6 +74,12 @@ public class DescriptionSituationActivity extends Activity {
         this.editTextDescriptif.setText(this.laSituation.getDescriptif());
         // initialisation des écouteurs d'événements
         this.buttonUpdate.setOnClickListener(new OnButtonClick());
+
+        PCPApplication monAppli = (PCPApplication) DescriptionSituationActivity.this.getApplication();;
+        Etudiant lEtudiant;
+        lEtudiant = monAppli.getVisiteur();
+
+        this.setTitle(lEtudiant.getPrenom()+ " " + lEtudiant.getNom());
 
         this.initSpinnerLocalisation();
         this.initSpinnerSource();

@@ -27,8 +27,6 @@ public class SituationsActivity extends Activity {
 	private ListView listViewSitPros;
 	private ArrayList<Situation> lesSitPros;
 	private ArrayAdapter<Situation> unAdaptateur;
-	private Toolbar unTitre;
-	private String unNom, unPrenom;
 	/**
 	 * Méthode appelée lors de la création de l'activité
 	 */

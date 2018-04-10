@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Classe regroupant les caractéristiques d'un visiteur
  * @author sio2slam
 */
-public class Etudiant {
+public class Etudiant implements Serializable {
 	private String login;
 	private String motPasse;
 	private String nom;
