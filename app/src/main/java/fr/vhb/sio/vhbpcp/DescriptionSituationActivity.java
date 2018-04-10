@@ -12,13 +12,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import fr.vhb.sio.vhbpcp.dao.PasserelleSituation;
+import fr.vhb.sio.vhbpcp.metier.Cadre;
 import fr.vhb.sio.vhbpcp.metier.Localisation;
 import fr.vhb.sio.vhbpcp.metier.Situation;
 import fr.vhb.sio.vhbpcp.metier.Source;
+import fr.vhb.sio.vhbpcp.metier.TypeSP;
 
 /**
  * Classe gérant l'interface utilisateur de la description d'une situation professionnelle
@@ -29,13 +32,27 @@ public class DescriptionSituationActivity extends Activity {
     private int position;
     private EditText editTextLibcourt;
     private EditText editTextDescriptif;
+    private EditText editTextContext;
+    private EditText editTextEnvTechno;
+    private EditText editTextMoyens;
+    private EditText editTextAvisPerso;
+    private EditText editTextDateDebut;
+    private EditText editTextDateFin;
     private Button buttonUpdate;
     private Spinner spinnerCodeLocalisation;
     private ArrayList<Localisation> lesCodesLocalisation;
-    ArrayAdapter<Localisation> dataAdapterCodeLocalisation;
+    private ArrayAdapter<Localisation> dataAdapterCodeLocalisation;
     private Spinner spinnerCodeSource;
     private ArrayList<Source> lesCodesSource;
-    ArrayAdapter<Source> dataAdapterCodeSource ;
+    private ArrayAdapter<Source> dataAdapterCodeSource ;
+    private Spinner spinnerCadre;
+    private ArrayList<Cadre> lesCadres;
+    private ArrayAdapter<Cadre> dataAdapterCadre ;
+    private Spinner spinnerType;
+    private ArrayList<TypeSP> lesTypes;
+    private ArrayAdapter<TypeSP> dataAdapterTypeSP ;
+
+
     /**
 	 * Méthode appelée lors de la création de l'activité
      * @param savedInstanceState
@@ -61,6 +78,12 @@ public class DescriptionSituationActivity extends Activity {
         // récupération des widgets pour la description de la situation
         this.editTextLibcourt = (EditText) findViewById(R.id.editTextLibcourt);
         this.editTextDescriptif = (EditText) findViewById(R.id.editTextDescriptif);
+        this.editTextContext = (EditText) findViewById(R.id.editTextContext);
+        this.editTextEnvTechno = (EditText) findViewById(R.id.editTextEnvTechno);
+        this.editTextMoyens = (EditText) findViewById(R.id.editTextMoyens);
+        this.editTextAvisPerso = (EditText) findViewById(R.id.editTextAvisPerso);
+        this.editTextDateDebut = (EditText) findViewById(R.id.editTextDateDebut);
+        this.editTextDateFin = (EditText) findViewById(R.id.editTextDateFin);
         this.buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
 
         // récupération de la situation véhiculée par l'intention
@@ -71,11 +94,19 @@ public class DescriptionSituationActivity extends Activity {
         // initialisation des zones d'éditions à partir de la situation reçue
         this.editTextLibcourt.setText(this.laSituation.getLibcourt());
         this.editTextDescriptif.setText(this.laSituation.getDescriptif());
+        this.editTextContext.setText(this.laSituation.getContext());
+        this.editTextEnvTechno.setText(this.laSituation.getEnvTechno());
+        this.editTextMoyens.setText(this.laSituation.getMoyens());
+        this.editTextAvisPerso.setText(this.laSituation.getAvisPerso());
+        this.editTextDateDebut.setText(String.valueOf(this.laSituation.getDateDebut()));
+        this.editTextDateFin.setText(String.valueOf(this.laSituation.getDateFin()));
         // initialisation des écouteurs d'événements
         this.buttonUpdate.setOnClickListener(new OnButtonClick());
 
         this.initSpinnerLocalisation();
         this.initSpinnerSource();
+        this.initSpinnerCadre();
+        this.initSpinnerType();
    	}
 
     /**
@@ -141,6 +172,64 @@ public class DescriptionSituationActivity extends Activity {
         }
     }
 
+    private void initSpinnerCadre() {
+        // récupération du widget spinner pour sélectionner la localisation
+        spinnerCadre = (Spinner) findViewById(R.id.spinnerCadre);
+
+        // initialisation de la source de données, les localisations possibles sont initialisées en "dur"
+        // ces localisations pourraient être récupérées par appel de Web Services
+        // mais on considère que ces données sont très stables
+        lesCadres = new ArrayList<Cadre>();
+        lesCadres.add(new Cadre("1","Equipe"));
+        lesCadres.add(new Cadre("2", "Seul"));
+
+        // création de l'adaptateur pour le spinner et lien avec la source de données
+        dataAdapterCadre = new ArrayAdapter<Cadre>(this, android.R.layout.simple_spinner_item, lesCadres);
+
+        // Drop down layout style - list view with radio button
+        dataAdapterCadre.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // lie l'adaptateur et le spinner
+        spinnerCadre.setAdapter(dataAdapterCadre);
+
+        // sélectionne la localisation initiale
+        for (int i=0;i<lesCadres.size();i++){
+            if (lesCadres.get(i).getCode().equals(laSituation.getCodeCadre())){
+                spinnerCadre.setSelection(i);
+            }
+        }
+    }
+
+    private void initSpinnerType() {
+        // récupération du widget spinner pour sélectionner la localisation
+        spinnerType = (Spinner) findViewById(R.id.spinnerType);
+
+        // initialisation de la source de données, les localisations possibles sont initialisées en "dur"
+        // ces localisations pourraient être récupérées par appel de Web Services
+        // mais on considère que ces données sont très stables
+        lesTypes = new ArrayList<TypeSP>();
+        lesTypes.add(new TypeSP("1","Vécu"));
+        lesTypes.add(new TypeSP("2", "Observé"));
+        lesTypes.add(new TypeSP("3", "Simulé"));
+
+
+        // création de l'adaptateur pour le spinner et lien avec la source de données
+        dataAdapterTypeSP = new ArrayAdapter<TypeSP>(this, android.R.layout.simple_spinner_item, lesTypes);
+
+        // Drop down layout style - list view with radio button
+        dataAdapterTypeSP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // lie l'adaptateur et le spinner
+        spinnerType.setAdapter(dataAdapterTypeSP);
+
+        // sélectionne la localisation initiale
+        for (int i=0;i<lesTypes.size();i++){
+            if (lesTypes.get(i).getCode().equals(laSituation.getCodeType())){
+                spinnerType.setSelection(i);
+            }
+        }
+    }
+
     /**
      * Constitue un dictionnaire des clés / valeurs modifiées sur le formulaire
      * Les clés correspondent aux noms de données attendues par le Web Service
@@ -150,10 +239,28 @@ public class DescriptionSituationActivity extends Activity {
         HashMap<String, String> laHashMap;
         laHashMap = new HashMap<String, String>();
         if (! editTextLibcourt.getText().toString().equals(laSituation.getLibcourt())) {
-            laHashMap.put("libcourt", editTextLibcourt.getText().toString());
+            laHashMap.put("libCourt", editTextLibcourt.getText().toString());
         }
         if (! editTextDescriptif.getText().toString().equals(laSituation.getDescriptif())) {
             laHashMap.put("descriptif", editTextDescriptif.getText().toString());
+        }
+        if (! editTextContext.getText().toString().equals(laSituation.getContext())) {
+            laHashMap.put("contexte", editTextContext.getText().toString());
+        }
+        if (! editTextEnvTechno.getText().toString().equals(laSituation.getEnvTechno())) {
+            laHashMap.put("environnement", editTextEnvTechno.getText().toString());
+        }
+        if (! editTextMoyens.getText().toString().equals(laSituation.getMoyens())) {
+            laHashMap.put("moyen", editTextMoyens.getText().toString());
+        }
+        if (! editTextAvisPerso.getText().toString().equals(laSituation.getAvisPerso())) {
+            laHashMap.put("avisPerso", editTextAvisPerso.getText().toString());
+        }
+        if (! editTextDateDebut.getText().toString().equals(laSituation.getDateDebut())) {
+            laHashMap.put("dateDebut", editTextDateDebut.getText().toString());
+        }
+        if (! editTextDateFin.getText().toString().equals(laSituation.getDateFin())) {
+            laHashMap.put("dateFin", editTextDateFin.getText().toString());
         }
         int position;
         position = spinnerCodeLocalisation.getSelectedItemPosition();
@@ -164,6 +271,15 @@ public class DescriptionSituationActivity extends Activity {
         if (! lesCodesSource.get(position).getCode().equals(laSituation.getCodeSource())) {
             laHashMap.put("codeSource", lesCodesSource.get(position).getCode());
         }
+        position = spinnerCadre.getSelectedItemPosition();
+        if (! lesCadres.get(position).getCode().equals(laSituation.getCodeCadre())) {
+            laHashMap.put("codeCadre", lesCadres.get(position).getCode());
+        }
+        position = spinnerType.getSelectedItemPosition();
+        if (! lesTypes.get(position).getCode().equals(laSituation.getCodeType())) {
+            laHashMap.put("codeType", lesTypes.get(position).getCode());
+        }
+
         return laHashMap;
     }
 	/**

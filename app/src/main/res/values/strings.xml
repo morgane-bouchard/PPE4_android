@@ -20,5 +20,13 @@
     <string name="buttonUpdate">Modifier</string>
     <string name="inviteLocalisation">Localisation</string>
     <string name="inviteSource">Source</string>
+    <string name="inviteContexte">Contexte</string>
+    <string name="inviteEnvTechno">Environnement technologique</string>
+    <string name="inviteMoyens">Moyens</string>
+    <string name="inviteAvisPerso">Avis personnel</string>
+    <string name="inviteCadre">Cadre</string>
+    <string name="inviteType">Type</string>
+    <string name="inviteDate">Date de début et date de fin</string>
+
 
 </resources>

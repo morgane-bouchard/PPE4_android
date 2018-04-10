@@ -14,19 +14,31 @@ public class Situation implements Parcelable{
 	private String ref;
 	private String libcourt;
 	private String descriptif;
+    private String context;
+    private String envTechno;
+    private String moyens;
+    private String avisPerso;
 	private String codeLocalisation;
 	private String codeSource;
+	private String codeCadre;
+	private String codetype;
 	private Date dateDebut;
 	private Date dateFin;
 	/**
 	 * Instancie une situation
 	 */
-	public Situation(String uneRef, String unLibcourt, String unDescriptif, String unCodeLocalisation,String unCodeSource, Date uneDateDebut, Date uneDateFin) {
+	public Situation(String uneRef, String unLibcourt, String unDescriptif, String unContext, String unEnvTechno, String unMoyens, String unAvisPerso, String unCodeLocalisation,String unCodeSource,String unCodeCadre,String unCodeType, Date uneDateDebut, Date uneDateFin) {
 		this.ref = uneRef;
 		this.libcourt = unLibcourt;
 		this.descriptif	= unDescriptif;
+        this.context = unContext;
+        this.envTechno = unEnvTechno;
+        this.moyens = unMoyens;
+        this.avisPerso = unAvisPerso;
 		this.codeLocalisation = unCodeLocalisation;
 		this.codeSource = unCodeSource;
+		this.codeCadre = unCodeCadre;
+		this.codetype = unCodeType;
 		this.dateDebut = uneDateDebut;
 		this.dateFin = uneDateFin;
 	}
@@ -37,8 +49,14 @@ public class Situation implements Parcelable{
 		this.ref = in.readString();
 		this.libcourt = in.readString();
 		this.descriptif	= in.readString();
+        this.context = in.readString();
+        this.envTechno = in.readString();
+        this.moyens = in.readString();
+        this.avisPerso = in.readString();
 		this.codeLocalisation = in.readString();
 		this.codeSource = in.readString();
+		this.codeCadre = in.readString();
+		this.codetype = in.readString();
 		this.dateDebut = new Date(in.readLong());
 		this.dateFin = new Date(in.readLong());
 	}
@@ -63,6 +81,34 @@ public class Situation implements Parcelable{
 	public String getDescriptif() {
 		return this.descriptif;
 	}
+    /**
+     * Fournit le context de la situation
+     * @return context de la situation
+     */
+    public String getContext() {
+        return this.context;
+    }
+    /**
+     * Fournit l'environement technologique de la situation
+     * @return l'environement technologique de la situation
+     */
+    public String getEnvTechno() {
+        return this.envTechno;
+    }
+    /**
+     * Fournit le moyens de la situation
+     * @return le moyens de la situation
+     */
+    public String getMoyens() {
+        return this.moyens;
+    }
+    /**
+     * Fournit l'avis personnel de la situation
+     * @return l'avis personnel de la situation
+     */
+    public String getAvisPerso() {
+        return this.avisPerso;
+    }
 	/**
 	 * Fournit le code localisation de la situation
 	 * @return code localisation de la situation
@@ -76,6 +122,20 @@ public class Situation implements Parcelable{
 	 */
 	public String getCodeSource() {
 		return this.codeSource;
+	}
+	/**
+	 * Fournit le code source de la situation
+	 * @return code source de la situation
+	 */
+	public String getCodeCadre() {
+		return this.codeCadre;
+	}
+	/**
+	 * Fournit le code source de la situation
+	 * @return code source de la situation
+	 */
+	public String getCodeType() {
+		return this.codetype;
 	}
 	/**
 	 * Fournit la date de début de la situation
@@ -102,15 +162,37 @@ public class Situation implements Parcelable{
 	 * Affecte le descriptif  de la situation
 	 * @param unDescriptif
 	 */
-	public void setDescriptif(String unDescriptif) {
-		this.descriptif = unDescriptif;
+	public void setDescriptif(String unDescriptif) {this.descriptif = unDescriptif;
 	}
+    /**
+     * Affecte le context  de la situation
+     * @param unContext
+     */
+    public void setContext(String unContext) {this.context = unContext;
+    }
+    /**
+     * Affecte l'environement technologique  de la situation
+     * @param unEnvTechno
+     */
+    public void setEnvTechno(String unEnvTechno) {this.envTechno = unEnvTechno;
+    }
+    /**
+     * Affecte le moyens  de la situation
+     * @param unMoyens
+     */
+    public void setMoyens(String unMoyens) {this.moyens = unMoyens;
+    }
+    /**
+     * Affecte l'avis personnel  de la situation
+     * @param unAvisPerso
+     */
+    public void setAvisPerso(String unAvisPerso) {this.avisPerso = unAvisPerso;
+    }
 	/**
 	 * Affecte le code localisation  de la situation
 	 * @param unCodeLocalisation
 	 */
-	public void setCodeLocalisation(String unCodeLocalisation) {
-		this.codeLocalisation = unCodeLocalisation;
+	public void setCodeLocalisation(String unCodeLocalisation) {this.codeLocalisation = unCodeLocalisation;
 	}
 	/**
 	 * Affecte le code source  de la situation
@@ -118,6 +200,20 @@ public class Situation implements Parcelable{
 	 */
 	public void setCodeSource(String unCodeSource) {
 		this.codeSource = unCodeSource;
+	}
+	/**
+	 * Affecte le code source  de la situation
+	 * @param unCodeCadre
+	 */
+	public void setCodeCadre(String unCodeCadre) {
+		this.codeSource = unCodeCadre;
+	}
+	/**
+	 * Affecte le code source  de la situation
+	 * @param unCodetype
+	 */
+	public void setCodetype(String unCodetype) {
+		this.codeSource = unCodetype;
 	}
 	/**
 	 * Affecte la date de début  de la situation
@@ -158,8 +254,14 @@ public class Situation implements Parcelable{
 		dest.writeString(this.getRef());
 		dest.writeString(this.getLibcourt());
 		dest.writeString(this.getDescriptif());
+        dest.writeString(this.getContext());
+        dest.writeString(this.getEnvTechno());
+        dest.writeString(this.getMoyens());
+        dest.writeString(this.getAvisPerso());
 		dest.writeString(this.getCodeLocalisation());
 		dest.writeString(this.getCodeSource());
+		dest.writeString(this.getCodeCadre());
+		dest.writeString(this.getCodeType());
 		dest.writeLong(this.getDateDebut().getTime());
 		dest.writeLong(this.getDateFin().getTime());
 	}
