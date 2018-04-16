@@ -41,7 +41,8 @@ public class PasserelleSituation {
         // on met à jour la situation pour chaque caractéristique ayant subi une modification
         laSituation.setLibcourt((laHashMapToUpdate.containsKey("libcourt")) ? laHashMapToUpdate.get("libcourt") : laSituation.getLibcourt());
         laSituation.setDescriptif((laHashMapToUpdate.containsKey("descriptif")) ? laHashMapToUpdate.get("descriptif") : laSituation.getDescriptif());
-        laSituation.setContext((laHashMapToUpdate.containsKey("contexte")) ? laHashMapToUpdate.get("contexte") : laSituation.getContext());
+        laSituation.setContext((laHashMapToUpdate.containsKey("contexte")) ? laHashMapToUpdate.get("cont" +
+                "exte") : laSituation.getContext());
         laSituation.setEnvTechno((laHashMapToUpdate.containsKey("environnement")) ? laHashMapToUpdate.get("environnement") : laSituation.getEnvTechno());
         laSituation.setMoyens((laHashMapToUpdate.containsKey("moyen")) ? laHashMapToUpdate.get("moyen") : laSituation.getMoyens());
         laSituation.setAvisPerso((laHashMapToUpdate.containsKey("avisPerso")) ? laHashMapToUpdate.get("avisPerso") : laSituation.getAvisPerso());
