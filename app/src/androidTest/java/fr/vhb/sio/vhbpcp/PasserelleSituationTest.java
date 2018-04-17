@@ -34,6 +34,7 @@ public class PasserelleSituationTest extends TestCase {
 		assertEquals("2", lesSituations.get(3).getCodeLocalisation());
 		assertEquals("3", lesSituations.get(3).getCodeSource());
 
+
 		//Test nbCommentaires à zéro
 		assertEquals(6, lesSituations.get(2).getNbActivitees());
 		assertEquals(6, lesSituations.get(2).getNbProductions());
@@ -62,7 +63,7 @@ public class PasserelleSituationTest extends TestCase {
 		uneSituation = lesSituations.get(3);
 		HashMap<String, String> maHashMap = new HashMap<String, String>();
 		maHashMap.put("codeSource", "4");
-		maHashMap.put("datedebut", "2017-03-05");
+		maHashMap.put("dateDebut", "2017-03-05");
 		uneSituation = PasserelleSituation.updateSituation(new Etudiant("jeanfrancois.doulin@gmail.com", "motdepasse"),
 				uneSituation, maHashMap);
 		assertEquals("4", uneSituation.getCodeSource());

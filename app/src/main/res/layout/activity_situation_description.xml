@@ -4,62 +4,62 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/inviteLibcourt"
         android:id="@+id/textViewLibcourt"
-        android:hint="Libellé court" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Libellé court"
+        android:text="@string/inviteLibcourt"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
         android:id="@+id/editTextLibcourt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/inviteDescriptif"
         android:id="@+id/textViewDescriptif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descriptif"
         android:inputType="textMultiLine"
-        android:hint="Descriptif" />
+        android:text="@string/inviteDescriptif"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
+        android:id="@+id/editTextDescriptif"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextDescriptif" />
+        android:layout_height="wrap_content" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/inviteLocalisation"
-        android:id="@+id/textViewLocalisation" />
-
-    <Spinner
+        android:id="@+id/textViewLocalisation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/inviteLocalisation"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
         android:id="@+id/spinnerCodelocalisation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:focusable="false" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/inviteSource"
-        android:id="@+id/textViewSource" />
-
-    <Spinner
+        android:id="@+id/textViewSource"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerCodeSource" />
+        android:text="@string/inviteSource"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/spinnerCodeSource"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonUpdate"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/buttonUpdate"
-        android:id="@+id/buttonUpdate" />
+        android:text="@string/buttonUpdate" />
 
 </LinearLayout>

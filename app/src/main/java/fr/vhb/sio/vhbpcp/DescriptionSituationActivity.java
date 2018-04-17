@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -45,13 +46,41 @@ public class DescriptionSituationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_situation_description);
 		initialisations();
-	}
+    }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.sitpros, menu);
 		return true;
 	}
+
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        Intent uneIntention;
+        item.setChecked(true);
+
+        switch(item.getItemId()) {
+            case R.id.itemDescription :
+                uneIntention = new Intent(DescriptionSituationActivity.this, DescriptionSituationActivity.class);
+                uneIntention.putExtra("laSituation", laSituation);
+                startActivityForResult(uneIntention, 1);
+                break;
+            case R.id.itemActivites :
+
+                break;
+            case R.id.itemReformulation :
+                break;
+            case R.id.itemProduction :
+                uneIntention = new Intent(DescriptionSituationActivity.this, ProductionActivity.class);
+                uneIntention.putExtra("laSituation", laSituation);
+                startActivityForResult(uneIntention, 1);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 
     /**
      * Initialise les attributs privés référençant les widgets de l'interface utilisateur
@@ -73,7 +102,6 @@ public class DescriptionSituationActivity extends Activity {
         this.editTextDescriptif.setText(this.laSituation.getDescriptif());
         // initialisation des écouteurs d'événements
         this.buttonUpdate.setOnClickListener(new OnButtonClick());
-
         this.initSpinnerLocalisation();
         this.initSpinnerSource();
    	}

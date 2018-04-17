@@ -20,5 +20,11 @@
     <string name="buttonUpdate">Modifier</string>
     <string name="inviteLocalisation">Localisation</string>
     <string name="inviteSource">Source</string>
+    <string name="textViewProduction">Mes productions :</string>
+    <string name="textViewLibelle">Vous saisissez un libellé explicite pour chaque production réalisée dans cette situation et vous indiquez l\'URI permettant d\'y accéder.</string>
+    <string name="textViewDesignation">Désignation :</string>
+    <string name="textViewURI">Adresse (URI) :</string>
+    <string name="textViewDelete">Supprimer :</string>
+    <string name="buttonEnregistrer">Enregistrer</string>
 
 </resources>

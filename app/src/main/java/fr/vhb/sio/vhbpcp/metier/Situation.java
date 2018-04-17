@@ -3,6 +3,7 @@ package fr.vhb.sio.vhbpcp.metier;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
