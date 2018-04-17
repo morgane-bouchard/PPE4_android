@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,12 +48,39 @@ public class DescriptionSituationActivity extends Activity {
 		setContentView(R.layout.activity_situation_description);
 		initialisations();
 	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.sitpros, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.sitpros, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent uneIntention;
+
+        switch (item.getItemId()) {
+            case R.id.itemDescription:
+                uneIntention= new Intent(DescriptionSituationActivity.this, DescriptionSituationActivity.class);
+                uneIntention.putExtra("situation", laSituation);
+                uneIntention.putExtra("position", position);
+                startActivityForResult(uneIntention, 1);
+                break;
+            case R.id.itemActivites:
+                uneIntention= new Intent(DescriptionSituationActivity.this, ActiviteActivity.class);
+                uneIntention.putExtra("situation", laSituation);
+                uneIntention.putExtra("position", position);
+                startActivityForResult(uneIntention, 1);
+                break;
+            case R.id.itemReformulation:
+                break;
+            case R.id.itemProduction:
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 
     /**
      * Initialise les attributs privés référençant les widgets de l'interface utilisateur
@@ -173,7 +201,15 @@ public class DescriptionSituationActivity extends Activity {
         }
         return laHashMap;
     }
-	/**
+
+    public static class OnButtonBackClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            
+        }
+    }
+
+    /**
 	 * Classe interne pour prendre en charge l'appel à un service web et sa réponse
 	 * La consultation des situations professionnelles fait en effet appel au service web et peut donc prendre quelques sec.
 	 * A partir d'Android 3.0, une requête HTTP doit être effectuée à l'intérieur d'une tâche asynchrone
@@ -226,7 +262,7 @@ public class DescriptionSituationActivity extends Activity {
     /**
      * Classe interne servant d'écouteur de l'événement click sur le bouton Modifier
      */
-	private class OnButtonClick implements View.OnClickListener {
+    public static class OnButtonClick implements View.OnClickListener {
 		@Override
     	public void onClick(View view) {
             // on demande à récupérer uniquement les champs de saisie qui ont subi une modification

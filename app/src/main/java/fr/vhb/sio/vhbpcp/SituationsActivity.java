@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 /**
  * Classe gérant l'interface utilisateur d'une liste de situations professionnelles

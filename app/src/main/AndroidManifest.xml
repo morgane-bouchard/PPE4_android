@@ -19,6 +19,8 @@
         </activity>
         <activity android:name="fr.vhb.sio.vhbpcp.DescriptionSituationActivity">
         </activity>
+        <activity android:name="fr.vhb.sio.vhbpcp.ActiviteActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -32,16 +32,15 @@ public class PasserelleSituation extends Passerelle {
 	 * @return cette liste d'objets de classe Situation
 	 * @throws Exception
 	 */
-	public static ArrayList<Situation> getLesSPs(Etudiant leVisiteur) throws Exception{
+	public static ArrayList<Situation> getLesSPs(Etudiant leVisiteur) throws Exception {
 		ArrayList<Situation> lesSPs = null;
 		Situation uneSituation;
-		
-		try
-		{
+
+		try {
 			String uneUrl = getUrlComplete(URL_SITUATIONS_GET, leVisiteur);
 			HttpURLConnection uneRequeteHttp = prepareHttpRequestGet(uneUrl);
 			JSONObject unObjetJSON = loadResultJSON(uneRequeteHttp);
-	
+
 			// on renvoie une exception si status différent de 0
 			controlStatus(unObjetJSON);
 
@@ -51,17 +50,16 @@ public class PasserelleSituation extends Passerelle {
 					<depts>
 			*/
 			// création d'un objet ArrayList en vue de contenir les situations professionnelles
-			lesSPs = new ArrayList<Situation> ();
+			lesSPs = new ArrayList<Situation>();
 			// parcours de la liste des noeuds <sitpro>
-			for (int i = 0 ; i < lesSitPros.length() ; i++) {    // création de l'élément courant à chaque tour de boucle
+			for (int i = 0; i < lesSitPros.length(); i++) {    // création de l'élément courant à chaque tour de boucle
 				JSONObject courant = lesSitPros.getJSONObject(i);
 				// constitution de la situations à partir de toutes les balises contenues dans <sitpro
 				uneSituation = getSituationFromJSONObject(courant);
 				// ajoute la situation à la collection des situations
 				lesSPs.add(uneSituation);
 			}
-		}
-		catch (Exception ex) {	
+		} catch (Exception ex) {
 			Log.e("Passerelle", "Erreur exception : " + ex.toString());
 			throw ex;
 		}
