@@ -6,20 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+import fr.vhb.sio.vhbpcp.metier.Production;
 
-import fr.vhb.sio.vhbpcp.metier.Situation;
-
-public class SituationsAdapter extends ArrayAdapter<Situation>
-{
+public class ProductionAdapter extends ArrayAdapter<Production> {
     private final Context context;
     private final int resource;
-    private final ArrayList<Situation> values;
+    private final ArrayList<Production> values;
 
-    public SituationsAdapter(Context context, int resource, ArrayList<Situation> values)
+    public ProductionAdapter(Context context, int resource, ArrayList<Production> values)
     {
         super(context, resource, values);
         this.context = context;
@@ -35,8 +30,8 @@ public class SituationsAdapter extends ArrayAdapter<Situation>
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater;
         View rowView;
-        TextView textViewLibelCourt, textViewNbActivites, textViewNbProductions, textViewNbCommentaires;
-        Situation uneSituation;
+        TextView textViewLibelCourt;
+        Production uneProduction;
 
         // demande d'obtention d'un désérialisateur de layout xml,
         // càd un objet qui sait transformer un fichier xml en objet View
@@ -46,16 +41,9 @@ public class SituationsAdapter extends ArrayAdapter<Situation>
         rowView = inflater.inflate(this.resource, parent, false);
         // récupère chaque widget du layout d'un élément
         textViewLibelCourt = (TextView) rowView.findViewById(R.id.textViewLibelCourt);
-        textViewNbActivites = (TextView) rowView.findViewById(R.id.textViewNbActivites);
-        textViewNbProductions = (TextView) rowView.findViewById(R.id.textViewNbProductions);
-        textViewNbCommentaires = (TextView) rowView.findViewById(R.id.textViewNbCommentaires);
-
         // affecte le contenu des widgets d'après le contenu de l'élément reçu
-        uneSituation = values.get(position);
-        textViewLibelCourt.setText(uneSituation.getLibcourt());
-        textViewNbActivites.setText("Nombre d'activités : " + String.valueOf(uneSituation.getNbActivitees()));
-        textViewNbProductions.setText("Nombre de productions : " + String.valueOf(uneSituation.getNbProductions()));
-        textViewNbCommentaires.setText("Nombre de commentaires : " + String.valueOf(uneSituation.getNbCommentaires()));
+        uneProduction = values.get(position);
+        textViewLibelCourt.setText(uneProduction.getDesignation());
         return rowView;
 
     }
