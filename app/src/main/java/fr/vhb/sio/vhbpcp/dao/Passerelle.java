@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import fr.vhb.sio.vhbpcp.metier.Etudiant;
+import fr.vhb.sio.vhbpcp.metier.Situation;
 
 /**
  * Classe prenant en charge l'appel des web services pour obtenir ou modifier les données
@@ -129,5 +130,12 @@ public class Passerelle {
         uneUrl += "/format/json";
         uneUrl += "/login/" + URLEncoder.encode(unVisiteur.getLogin(), "UTF-8");
 		return uneUrl + "/mdp/" + URLEncoder.encode(unVisiteur.getMotPasse(), "UTF-8");
+	}
+	protected static String getUrlComplete(String uneUrl, Etudiant unVisiteur, Situation uneSituation) throws UnsupportedEncodingException {
+		uneUrl += "/format/json";
+		uneUrl += "/login/" + URLEncoder.encode(unVisiteur.getLogin(), "UTF-8");
+		uneUrl += "/mdp/" + URLEncoder.encode(unVisiteur.getMotPasse(), "UTF-8");
+		return uneUrl + "/ref/" + URLEncoder.encode(uneSituation.getRef(), "UTF-8");
+
 	}
 }
