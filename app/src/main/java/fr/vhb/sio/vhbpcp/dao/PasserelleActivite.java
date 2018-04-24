@@ -16,7 +16,7 @@ import fr.vhb.sio.vhbpcp.metier.Situation;
  * Created by mbouchard on 10/04/2018.
  */
 
-public class PasserelleActivite extends Passerelle{
+public class PasserelleActivite extends Passerelle {
     public static final String URL_SITUATIONS_GET = URL_HOTE_WS + "WSActiviteCitee/getBySituation";
 
 
@@ -64,3 +64,4 @@ public class PasserelleActivite extends Passerelle{
         uneActivite = new Activite(unId, uneNomenclature, unLibelle);
         return uneActivite;
     }
+}

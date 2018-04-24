@@ -42,7 +42,8 @@ public class SituationsActivity extends Activity {
 		return true;
 	}
 
-    /**
+
+	/**
      * Méthode appelée lors de la réception du résultat de l'activité DescriptionSituationActivity
      * @param requestCode
      * @param resultCode
@@ -77,9 +78,7 @@ public class SituationsActivity extends Activity {
 		
 	/**
 	 * Classe interne pour prendre en charge l'appel à un service web et sa réponse
-	 * La consultation des situations professionnelles fait en effet appel au service web et peut donc prendre quelques sec.
-	 * A partir d'Android 3.0, une requête HTTP doit être effectuée à l'intérieur d'une tâche asynchrone
-	 * TypeParam1 : Void - pas de paramètres fournis à la tâche
+	 * La consultation des situations professionnelles fait en ef9
 	 * TypeParam2 : Void - pas de paramètres fournis pendant la durée du traitement
 	 * TypeParam3 : Object - type de paramètre ArrayList<String> ou Exception
 	 * @see android.os.AsyncTask

@@ -1,10 +1,12 @@
 package fr.vhb.sio.vhbpcp.metier;
 
+import java.io.Serializable;
+
 /**
  * Created by install on 17/04/2018.
  */
 
-public class Activite {
+public class Activite implements Serializable{
     private String _id;
     private String _code;
     private String _libelle;

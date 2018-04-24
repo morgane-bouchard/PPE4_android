@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -69,6 +70,33 @@ public class DescriptionSituationActivity extends Activity {
 		getMenuInflater().inflate(R.menu.sitpros, menu);
 		return true;
 	}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent uneIntention;
+
+        switch (item.getItemId()) {
+            case R.id.itemDescription:
+                uneIntention= new Intent(DescriptionSituationActivity.this, DescriptionSituationActivity.class);
+                uneIntention.putExtra("situation", laSituation);
+                uneIntention.putExtra("position", position);
+                startActivityForResult(uneIntention, 1);
+                break;
+            case R.id.itemReformulation:
+                uneIntention= new Intent(DescriptionSituationActivity.this, ReformulationActivity.class);
+                uneIntention.putExtra("situation", laSituation);
+                uneIntention.putExtra("position", position);
+                startActivityForResult(uneIntention, 1);
+                break;
+            case R.id.itemActivites:
+                break;
+            case R.id.itemProduction:
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 
     /**
      * Initialise les attributs privés référençant les widgets de l'interface utilisateur
