@@ -6,11 +6,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import fr.vhb.sio.vhbpcp.dao.PasserelleActivite;
 import fr.vhb.sio.vhbpcp.metier.Etudiant;
@@ -26,6 +29,7 @@ public class ActiviteActivity extends Activity {
     private int position;
     public static final int CODE_UPDATE = 1;
     private ListView listViewActivites;
+    private Button buttonAjouter;
     private ArrayList<Activite> lesActivites;
     private ArrayAdapter<Activite> unAdaptateur;
 
@@ -44,6 +48,8 @@ public class ActiviteActivity extends Activity {
         this.position = uneIntention.getIntExtra("position", 0);
 
         listViewActivites = (ListView) findViewById(R.id.ListViewActivites);
+        buttonAjouter = (Button) findViewById(R.id.buttonAjoutActivite);
+        buttonAjouter.setOnClickListener(new OnButtonClick());
 
         // click sur item
         //listViewActivites.setOnItemClickListener(new SituationsActivity.ListViewOnItemClick() );
@@ -57,6 +63,20 @@ public class ActiviteActivity extends Activity {
         this.setTitle(lEtudiant.getPrenom()+ " " + lEtudiant.getNom());
         new ActiviteActivity.ActiviteGet().execute();
     }
+
+
+    public class OnButtonClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent uneIntention;
+            uneIntention= new Intent(ActiviteActivity.this, AjoutActiviteActivity.class);
+            uneIntention.putExtra("situation", laSituation);
+            uneIntention.putExtra("position", position);
+            startActivityForResult(uneIntention, 1);
+
+        }
+    }
+
 
     private class ActiviteGet extends AsyncTask<Void, Void, Object> {
         /**
@@ -96,6 +116,8 @@ public class ActiviteActivity extends Activity {
             }
         }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -205,7 +205,7 @@ public class DescriptionSituationActivity extends Activity {
     public static class OnButtonBackClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            
+
         }
     }
 
@@ -262,7 +262,7 @@ public class DescriptionSituationActivity extends Activity {
     /**
      * Classe interne servant d'écouteur de l'événement click sur le bouton Modifier
      */
-    public static class OnButtonClick implements View.OnClickListener {
+    public class OnButtonClick implements View.OnClickListener {
 		@Override
     	public void onClick(View view) {
             // on demande à récupérer uniquement les champs de saisie qui ont subi une modification

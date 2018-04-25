@@ -5,8 +5,14 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import fr.vhb.sio.vhbpcp.metier.Activite;
 import fr.vhb.sio.vhbpcp.metier.Etudiant;
@@ -108,5 +114,41 @@ public class PasserelleActivite extends Passerelle{
         unLibelle = unObjetJSON.getString("libelle");
         uneActivite = new Activite(unId, uneNomenclature, unLibelle);
         return uneActivite;
+    }
+
+    public static void addActivityToSituation(Etudiant unVisiteur, Situation laSituation, Activite lActivite) throws Exception{
+        try {
+            String uneUrl = getUrlComplete(URL_SITUATION_ADD, unVisiteur, laSituation, lActivite);
+
+            HttpURLConnection uneRequeteHttp = prepareHttpRequestAdd(uneUrl, laSituation, lActivite);
+            /*JSONObject unObjetJSON = */loadResultJSON(uneRequeteHttp);
+
+        } catch (Exception ex) {
+            Log.e("Passerelle", "Erreur exception : " + ex.toString());
+            throw ex;
+        }
+    }
+
+    private static HttpURLConnection prepareHttpRequestAdd(String uri, Situation laSituation, Activite lActivite) throws Exception{
+        String data;
+
+        URL url = new URL(uri);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("POST");
+
+        // constitution des données à envoyer sous forme de couples clés / valeurs
+        data = "ref=" + laSituation.getRef()+ "&id=" + lActivite.get_id();
+        //data += "/id=" + lActivite.get_id();
+
+        // écriture des données sur le flux de sortie
+        OutputStream os = con.getOutputStream();
+        BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(os, "UTF-8"));
+        writer.write(data);
+        // fermeture des flux en sortie
+        writer.close();
+        os.close();
+
+        return con;
     }
 }

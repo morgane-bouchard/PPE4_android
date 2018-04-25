@@ -21,6 +21,8 @@
         </activity>
         <activity android:name="fr.vhb.sio.vhbpcp.ActiviteActivity">
         </activity>
+        <activity android:name="fr.vhb.sio.vhbpcp.AjoutActiviteActivity">
+        </activity>
     </application>
 
 </manifest>
