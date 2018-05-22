@@ -16,11 +16,11 @@ import fr.vhb.sio.vhbpcp.metier.Situation;
  * Created by mbouchard on 10/04/2018.
  */
 
-public class PasserelleActivite extends Passerelle {
-    public static final String URL_SITUATIONS_GET = URL_HOTE_WS + "WSActiviteCitee/getBySituation";
+public class PasserelleActiviteCitee extends Passerelle {
+    public static final String URL_SITUATIONS_GET = URL_HOTE_WS + "WSSitPros/getBySituation";
 
 
-    public static ArrayList<Activite> getActivitesBySituation(Etudiant unVisiteur, Situation laSituation) throws Exception {
+    public static ArrayList<Activite> getBySituation(Etudiant unVisiteur, Situation laSituation) throws Exception {
         ArrayList<Activite> lesActivites = null;
         Activite uneActivite;
 
@@ -32,7 +32,7 @@ public class PasserelleActivite extends Passerelle {
             // on renvoie une exception si status différent de 0
             controlStatus(unObjetJSON);
 
-            JSONArray arrayJson = unObjetJSON.getJSONArray("sitpros");
+            JSONArray situation = unObjetJSON.getJSONArray("situation");
 
         /* Exemple de situations professionnelles :
               <depts>
@@ -40,8 +40,8 @@ public class PasserelleActivite extends Passerelle {
             // création d'un objet ArrayList en vue de contenir les situations professionnelles
             lesActivites = new ArrayList<Activite>();
             // parcours de la liste des noeuds <sitpro>
-            for (int i = 0; i < arrayJson.length(); i++) {    // création de l'élément courant à chaque tour de boucle
-                JSONObject courant = arrayJson.getJSONObject(i);
+            for (int i = 0; i < situation.length(); i++) {    // création de l'élément courant à chaque tour de boucle
+                JSONObject courant = situation.getJSONObject(i);
                 // constitution de la situations à partir de toutes les balises contenues dans <sitpro
                 uneActivite = getActiviteFromJSONObject(courant);
                 // ajoute la situation à la collection des situations

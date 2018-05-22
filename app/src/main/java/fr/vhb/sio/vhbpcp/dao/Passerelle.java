@@ -132,10 +132,10 @@ public class Passerelle {
 		return uneUrl + "/mdp/" + URLEncoder.encode(unVisiteur.getMotPasse(), "UTF-8");
 	}
 	protected static String getUrlComplete(String uneUrl, Etudiant unVisiteur, Situation uneSituation) throws UnsupportedEncodingException {
+		uneUrl += "/ref/" + URLEncoder.encode(uneSituation.getRef(), "UTF-8");
 		uneUrl += "/format/json";
 		uneUrl += "/login/" + URLEncoder.encode(unVisiteur.getLogin(), "UTF-8");
-		uneUrl += "/mdp/" + URLEncoder.encode(unVisiteur.getMotPasse(), "UTF-8");
-		return uneUrl + "/ref/" + URLEncoder.encode(uneSituation.getRef(), "UTF-8");
+		return uneUrl + "/mdp/" + URLEncoder.encode(unVisiteur.getMotPasse(), "UTF-8");
 
 	}
 }
