@@ -22,7 +22,9 @@ import fr.vhb.sio.vhbpcp.metier.Etudiant;
  */
 public class Passerelle {
 
-	public static String URL_HOTE_WS = "http://172.17.193.165/SIO2/geven/WS_VHBPCP/WS_VHBPCP/index.php/";
+	//IP serveur : 172.17.193.165
+	//Ip local lycée : 172.17.196.197
+	public static String URL_HOTE_WS = "http://172.17.196.197/SIO2/geven/WS_VHBPCP/WS_VHBPCP/index.php/";
 
     /**
      * Retourne une requête HTTP de méthode GET à partir d'une URL donnée
