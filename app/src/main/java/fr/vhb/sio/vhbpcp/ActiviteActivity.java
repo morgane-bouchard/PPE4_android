@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -51,6 +52,8 @@ public class ActiviteActivity extends Activity {
         buttonAjouter = (Button) findViewById(R.id.buttonAjoutActivite);
         buttonAjouter.setOnClickListener(new OnButtonClick());
 
+        this.listViewActivites.setOnItemLongClickListener(new ItemOnLongClick());
+
         // click sur item
         //listViewActivites.setOnItemClickListener(new SituationsActivity.ListViewOnItemClick() );
 
@@ -64,7 +67,7 @@ public class ActiviteActivity extends Activity {
         new ActiviteActivity.ActiviteGet().execute();
     }
 
-
+    //bouton ajouter
     public class OnButtonClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -118,6 +121,58 @@ public class ActiviteActivity extends Activity {
     }
 
 
+    private class SituationDelete extends AsyncTask<Object, Void, Object> {
+        /**
+         * Permet de lancer l'exécution de la tâche longue
+         * ici, on demande les situations professionnelles de l'étudiant connecté
+         */
+        @Override
+        protected Object doInBackground(Object... params) {
+            PCPApplication monAppli;
+            monAppli = (PCPApplication) ActiviteActivity.this.getApplication();
+            try {
+                PasserelleActivite.deleteActiviteFromSituation(monAppli.getVisiteur(), (Situation) params[0], (Activite) params[1]);
+
+            }
+            catch (Exception ex) {
+                Toast.makeText(ActiviteActivity.this, "Impossible de supprimer cette activité", Toast.LENGTH_LONG).show();
+                return ex;
+            }
+            return params[0];
+        }
+        /**
+         * Méthode automatiquement appelée quand la tâche longue se termine
+         * ici, on teste le type de résultat reçu, exception ou liste
+         * @param result objet de type Situation ou Exception
+         */
+        @Override
+        protected void onPostExecute(Object result) {
+            if ( result instanceof Exception ) {
+                Exception ex = (Exception) result;
+                Toast.makeText(ActiviteActivity.this, getString(R.string.msgErrUpdateSitPro) + ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            else {
+                Intent uneIntention;
+                uneIntention = new Intent(ActiviteActivity.this, ActiviteActivity.class);
+                // on renvoie la position sauvegardée et la situation modifiée
+                uneIntention.putExtra("position", position);
+                uneIntention.putExtra("situation", (Situation) result);
+                setResult(RESULT_OK, uneIntention);
+                startActivityForResult(uneIntention, 1);
+            }
+        }
+    }
+
+    private class ItemOnLongClick implements AdapterView.OnItemLongClickListener {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            //position = listViewActivites.getSelectedItemPosition();
+            new ActiviteActivity.SituationDelete().execute(laSituation, lesActivites.get(position));
+
+            //lesActivites.remove(lesActivites.get(position));
+            return false;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

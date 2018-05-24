@@ -120,7 +120,7 @@ public class PasserelleActivite extends Passerelle{
         try {
             String uneUrl = getUrlComplete(URL_SITUATION_ADD, unVisiteur, laSituation, lActivite);
 
-            HttpURLConnection uneRequeteHttp = prepareHttpRequestAdd(uneUrl, laSituation, lActivite);
+            HttpURLConnection uneRequeteHttp = prepareHttpRequest(uneUrl, laSituation, lActivite);
             /*JSONObject unObjetJSON = */loadResultJSON(uneRequeteHttp);
 
         } catch (Exception ex) {
@@ -129,26 +129,24 @@ public class PasserelleActivite extends Passerelle{
         }
     }
 
-    private static HttpURLConnection prepareHttpRequestAdd(String uri, Situation laSituation, Activite lActivite) throws Exception{
-        String data;
-
+    private static HttpURLConnection prepareHttpRequest(String uri, Situation laSituation, Activite lActivite) throws Exception{
         URL url = new URL(uri);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("POST");
-
-        // constitution des données à envoyer sous forme de couples clés / valeurs
-        data = "ref=" + laSituation.getRef()+ "&id=" + lActivite.get_id();
-        //data += "/id=" + lActivite.get_id();
-
-        // écriture des données sur le flux de sortie
-        OutputStream os = con.getOutputStream();
-        BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(os, "UTF-8"));
-        writer.write(data);
-        // fermeture des flux en sortie
-        writer.close();
-        os.close();
+        con.setRequestMethod("GET");
 
         return con;
+    }
+
+    public static void deleteActiviteFromSituation(Etudiant unVisiteur, Situation laSituation, Activite lActivite) throws Exception{
+        try {
+            String uneUrl = getUrlComplete(URL_SITUATION_DELETE, unVisiteur, laSituation, lActivite);
+
+            HttpURLConnection uneRequeteHttp = prepareHttpRequest(uneUrl, laSituation, lActivite);
+            loadResultJSON(uneRequeteHttp);
+
+        } catch (Exception ex) {
+            Log.e("Passerelle", "Erreur exception : " + ex.toString());
+            throw ex;
+        }
     }
 }

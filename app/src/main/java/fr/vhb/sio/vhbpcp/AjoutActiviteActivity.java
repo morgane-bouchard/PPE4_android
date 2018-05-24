@@ -151,6 +151,7 @@ public class AjoutActiviteActivity extends Activity {
                 PasserelleActivite.addActivityToSituation(monAppli.getVisiteur(), (Situation) params[0], (Activite) params[1]);
             }
             catch (Exception ex) {
+                Toast.makeText(AjoutActiviteActivity.this, "Activité déjà ajoutée à la situation.", Toast.LENGTH_LONG).show();
                 return ex;
             }
             return params[0];
@@ -174,7 +175,7 @@ public class AjoutActiviteActivity extends Activity {
                 uneIntention.putExtra("position", position);
                 uneIntention.putExtra("situation", (Situation) result);
                 setResult(RESULT_OK, uneIntention);
-                finish();
+                startActivityForResult(uneIntention, 2);
             }
         }
     }
