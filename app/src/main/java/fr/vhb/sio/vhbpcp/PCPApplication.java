@@ -1,5 +1,7 @@
 package fr.vhb.sio.vhbpcp;
 
+import fr.vhb.sio.vhbpcp.metier.Activite;
+import fr.vhb.sio.vhbpcp.metier.Competence;
 import fr.vhb.sio.vhbpcp.metier.Etudiant;
 
 import android.app.Application;
@@ -12,6 +14,7 @@ import android.app.Application;
  */
 public class PCPApplication extends Application {
 	private Etudiant leVisiteur;
+	private Activite uneActivite;
 	/**
 	 * Fournit le visiteur connecté
 	 * @return Visiteur
@@ -25,5 +28,11 @@ public class PCPApplication extends Application {
 	 */
 	public void setVisiteur(Etudiant unVisiteur) {
 		this.leVisiteur = unVisiteur;
-	}	
+	}
+
+	public Activite getActivite() { return uneActivite;}
+
+	public void setActivite(Activite Activite) {
+		this.uneActivite = Activite;
+	}
 }

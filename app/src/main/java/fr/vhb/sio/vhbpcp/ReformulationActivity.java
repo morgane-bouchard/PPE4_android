@@ -3,6 +3,7 @@ package fr.vhb.sio.vhbpcp;
 import java.util.ArrayList;
 
 import fr.vhb.sio.vhbpcp.dao.PasserelleActiviteCitee;
+import fr.vhb.sio.vhbpcp.dao.PasserelleCompActiviteCitee;
 import fr.vhb.sio.vhbpcp.metier.Activite;
 import fr.vhb.sio.vhbpcp.metier.Situation;
 

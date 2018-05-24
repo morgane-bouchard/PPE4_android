@@ -13,6 +13,7 @@ import java.net.URLEncoder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import fr.vhb.sio.vhbpcp.metier.Activite;
 import fr.vhb.sio.vhbpcp.metier.Etudiant;
 import fr.vhb.sio.vhbpcp.metier.Situation;
 
@@ -133,6 +134,12 @@ public class Passerelle {
 	}
 	protected static String getUrlComplete(String uneUrl, Etudiant unVisiteur, Situation uneSituation) throws UnsupportedEncodingException {
 		uneUrl += "/ref/" + URLEncoder.encode(uneSituation.getRef(), "UTF-8");
+		uneUrl += "/format/json";
+		uneUrl += "/login/" + URLEncoder.encode(unVisiteur.getLogin(), "UTF-8");
+		return uneUrl + "/mdp/" + URLEncoder.encode(unVisiteur.getMotPasse(), "UTF-8");
+	}
+	protected static String getUrlComplete(String uneUrl, Etudiant unVisiteur, Activite uneActivite) throws UnsupportedEncodingException {
+		uneUrl += "/idActivite/" + URLEncoder.encode(uneActivite.get_id(), "UTF-8");
 		uneUrl += "/format/json";
 		uneUrl += "/login/" + URLEncoder.encode(unVisiteur.getLogin(), "UTF-8");
 		return uneUrl + "/mdp/" + URLEncoder.encode(unVisiteur.getMotPasse(), "UTF-8");
