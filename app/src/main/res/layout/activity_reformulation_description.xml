@@ -8,13 +8,21 @@
         android:id="@+id/ListViewCompétence"
         android:layout_width="match_parent"
         android:layout_height="63dp"
-        android:layout_weight="0.01" />
+        android:layout_weight="0.53" />
 
     <TextView
-        android:id="@+id/textViewReformulation"
+        android:id="@+id/textViewLibelReformulation"
+        android:layout_width="418dp"
+        android:layout_height="wrap_content"
+        android:text="Reformulation de l'activité:"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/editTextReformulation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.21"
-        android:text="TextView" />
+        android:layout_weight="0.32"
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
 </LinearLayout>

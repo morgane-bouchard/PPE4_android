@@ -48,7 +48,7 @@ public class DescriptionReformulationActivity extends Activity {
         uneIntention = getIntent();
         this.uneActivite = uneIntention.getParcelableExtra("activite");
         this.position = uneIntention.getIntExtra("position",0);
-        ListViewCompétence = (ListView) findViewById(R.id.ListViewActiviteCitee);
+        ListViewCompétence = (ListView) findViewById(R.id.ListViewCompétence);
 
         new CompBySituationGet().execute();
     }
