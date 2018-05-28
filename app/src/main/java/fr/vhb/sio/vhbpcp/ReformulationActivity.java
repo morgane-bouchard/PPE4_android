@@ -164,6 +164,8 @@ public class ReformulationActivity extends Activity {
             uneIntention = new Intent(ReformulationActivity.this, DescriptionReformulationActivity.class);
             uneIntention.putExtra("position", position);
             uneIntention.putExtra("activite", lesActivitePos.get(position));
+            uneIntention.putExtra("situation", laSituation);
+            uneIntention.putExtra("position", position);
             startActivityForResult(uneIntention, CODE_UPDATE);
         }
     }

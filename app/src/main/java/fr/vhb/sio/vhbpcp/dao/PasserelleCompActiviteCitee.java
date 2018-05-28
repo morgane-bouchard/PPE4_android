@@ -44,7 +44,7 @@ public class PasserelleCompActiviteCitee extends Passerelle {
             for (int i = 0; i < comp.length(); i++) {    // création de l'élément courant à chaque tour de boucle
                 JSONObject courant = comp.getJSONObject(i);
                 // constitution de la situations à partir de toutes les balises contenues dans <sitpro
-                uneCompetence = getActiviteFromJSONObject(courant);
+                uneCompetence = getCompFromJSONObject(courant);
                 // ajoute la situation à la collection des situations
                 lesCompetence.add(uneCompetence);
             }
@@ -55,7 +55,7 @@ public class PasserelleCompActiviteCitee extends Passerelle {
         return lesCompetence;
     }
 
-    private static Competence getActiviteFromJSONObject(JSONObject unObjetJSON) throws Exception {
+    private static Competence getCompFromJSONObject(JSONObject unObjetJSON) throws Exception {
         String unId, uneNomenclature, unLibelle;
         Competence uneCompetence;
 

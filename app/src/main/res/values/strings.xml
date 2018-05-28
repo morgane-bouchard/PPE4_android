@@ -13,6 +13,7 @@
     <string name="msgErrChampVide">Au moins un champ de saisie n\'est pas renseigné !</string>
     <string name="msgErrConnexionInvalide">Login et/ou mot de passe invalide</string>
     <string name="msgErrRecupSitPros">Erreur de récupération des situations professionnelles</string>
+    <string name="msgErrRecupComm">Erreur de récupération des commentaire</string>
     <string name="msgErrUpdateSitPro">Erreur de mise à jour de la situation professionnelle</string>
     <string name="title_activity_sitpros">Situations professionnelles</string>
     <string name="inviteLibcourt">Libellé court</string>

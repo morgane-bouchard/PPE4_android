@@ -17,12 +17,10 @@
         android:text="Reformulation de l'activité:"
         android:textColor="@android:color/black" />
 
-    <EditText
-        android:id="@+id/editTextReformulation"
+    <ListView
+        android:id="@+id/ListViewReformulation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.32"
-        android:ems="10"
-        android:inputType="textMultiLine" />
+        android:layout_height="81dp"
+        android:layout_weight="0.07" />
 
 </LinearLayout>
