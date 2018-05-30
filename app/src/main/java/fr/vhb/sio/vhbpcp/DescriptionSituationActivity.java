@@ -73,7 +73,7 @@ public class DescriptionSituationActivity extends Activity {
                 break;
             case R.id.itemProduction :
                 uneIntention = new Intent(DescriptionSituationActivity.this, ProductionActivity.class);
-                uneIntention.putExtra("laSituation", laSituation);
+                uneIntention.putExtra("situation", laSituation);
                 startActivityForResult(uneIntention, 1);
                 break;
             default:

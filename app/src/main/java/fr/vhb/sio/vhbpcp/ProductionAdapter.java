@@ -30,7 +30,7 @@ public class ProductionAdapter extends ArrayAdapter<Production> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater;
         View rowView;
-        TextView textViewLibelCourt;
+        TextView textViewDesignation, textViewURI;
         Production uneProduction;
 
         // demande d'obtention d'un désérialisateur de layout xml,
@@ -40,10 +40,12 @@ public class ProductionAdapter extends ArrayAdapter<Production> {
         // rowView est alors un objet regroupant les vues définies dans le layout d'une ligne
         rowView = inflater.inflate(this.resource, parent, false);
         // récupère chaque widget du layout d'un élément
-        textViewLibelCourt = (TextView) rowView.findViewById(R.id.textViewLibelCourt);
+        textViewDesignation = (TextView) rowView.findViewById(R.id.textViewDesignation);
+        textViewURI = (TextView) rowView.findViewById(R.id.textViewURI);
         // affecte le contenu des widgets d'après le contenu de l'élément reçu
         uneProduction = values.get(position);
-        textViewLibelCourt.setText(uneProduction.getDesignation());
+        textViewDesignation.setText(uneProduction.getDesignation());
+        textViewURI.setText(uneProduction.getURI());
         return rowView;
 
     }

@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,15 +17,20 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import fr.vhb.sio.vhbpcp.dao.PasserelleProduction;
 import fr.vhb.sio.vhbpcp.dao.PasserelleSituation;
+import fr.vhb.sio.vhbpcp.metier.Production;
 import fr.vhb.sio.vhbpcp.metier.Situation;
 
 public class ProductionActivity extends Activity{
     public static final int CODE_UPDATE = 1;
-    private ListView listViewSitPros;
-    private ArrayList<Situation> lesSitPros;
-    private SituationsAdapter unAdaptateur;
+    private ListView listViewProductions;
+    private ArrayList<Production> lesProductions;
+    private ProductionAdapter unAdaptateur;
     private TextView textView;
+    private Situation laSituation;
+    private Intent uneIntention;
+    private Button buttonAddProduction;
     /**
      * Méthode appelée lors de la création de l'activité
      */
@@ -57,10 +63,10 @@ public class ProductionActivity extends Activity{
         if (resultCode == RESULT_OK) {
 
             if (requestCode == CODE_UPDATE) {
-                Situation laSituation;
+                Production laProduction;
                 position = data.getIntExtra("position", 0);
-                laSituation = data.getParcelableExtra("situation");
-                this.lesSitPros.set(position, laSituation);
+                laProduction = data.getParcelableExtra("production");
+                this.lesProductions.set(position, laProduction);
                 this.unAdaptateur.notifyDataSetChanged();
             }
         }
@@ -72,9 +78,11 @@ public class ProductionActivity extends Activity{
      * Instancie et exécute un thread séparé pour récupérer les situations professionnelles
      */
     private void initialisations() {
-        listViewSitPros = (ListView) findViewById(R.id.listViewSitPros);
-        //listViewSitPros.setOnItemClickListener(new SituationsActivity().ListViewOnItemClick() );
-        //new ProductionActivity().SitProsGet().execute();
+        listViewProductions = (ListView) findViewById(R.id.listViewSitPros);
+        listViewProductions.setOnItemClickListener(new ListViewOnItemClick());
+        uneIntention = getIntent();
+        this.laSituation = uneIntention.getParcelableExtra("situation");
+        new ProductionsGet().execute();
     }
 
     /**
@@ -86,18 +94,18 @@ public class ProductionActivity extends Activity{
      * TypeParam3 : Object - type de paramètre ArrayList<String> ou Exception
      * @see android.os.AsyncTask
      */
-    private class SitProsGet extends AsyncTask<Void, Void, Object> {
+    private class ProductionsGet extends AsyncTask<Void, Void, Object> {
         /**
          * Permet de lancer l'exécution de la tâche longue
          * ici, on demande les situations professionnelles de l'étudiant connecté
          */
         @Override
         protected Object doInBackground(Void... params) {
-            ArrayList<Situation> lesDonnees;
+            ArrayList<Production> lesDonnees;
             PCPApplication monAppli;
             monAppli = (PCPApplication) ProductionActivity.this.getApplication();
             try {
-                lesDonnees = PasserelleSituation.getLesSPs(monAppli.getVisiteur());
+                lesDonnees = PasserelleProduction.getLesProductions(monAppli.getVisiteur(), laSituation.getRef());
             }
             catch (Exception ex) {
                 return ex;
@@ -117,10 +125,10 @@ public class ProductionActivity extends Activity{
                 Toast.makeText(ProductionActivity.this, getString(R.string.msgErrRecupSitPros) + ex.getMessage(), Toast.LENGTH_LONG).show();
             }
             else {
-                lesSitPros = (ArrayList<Situation>) result;
-                unAdaptateur = new SituationsAdapter(ProductionActivity.this, R.layout.layout_liste_sp, lesSitPros);
+                lesProductions = (ArrayList<Production>) result;
+                unAdaptateur = new ProductionAdapter(ProductionActivity.this, R.layout.layout_liste_productions, lesProductions);
                 // 	on associe l'adaptateur au composant ListView
-                listViewSitPros.setAdapter(unAdaptateur);
+                listViewProductions.setAdapter(unAdaptateur);
             }
         }
     }
@@ -135,7 +143,9 @@ public class ProductionActivity extends Activity{
             // crée une intention pour passer la position et la situation sélectionnées
             uneIntention = new Intent(ProductionActivity.this, DescriptionProductionActivity.class);
             uneIntention.putExtra("position", position);
-            uneIntention.putExtra("production", lesSitPros.get(position));
+            uneIntention.putExtra("production", lesProductions.get(position));
+            uneIntention.putExtra("situation", laSituation);
+            uneIntention.putExtra("type", "Modifier");
             startActivityForResult(uneIntention, CODE_UPDATE);
         }
     }
