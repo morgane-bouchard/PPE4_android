@@ -58,7 +58,7 @@ public class DescriptionReformulationActivity extends Activity {
         this.uneSituation = uneIntention.getParcelableExtra("situation");
         this.position = uneIntention.getIntExtra("position",0);
         ListViewCompétence = (ListView) findViewById(R.id.ListViewCompétence);
-        ListViewReformulation = (ListView) findViewById(R.id.ListViewCompétence);
+        ListViewReformulation = (ListView) findViewById(R.id.ListViewReformulation);
 
 
         new CompBySituationGet().execute();
@@ -138,7 +138,7 @@ public class DescriptionReformulationActivity extends Activity {
                 lesCommentaire = (ArrayList<Commentaire>) result;
                 unAdaptateur2 = new ArrayAdapter<Commentaire>(DescriptionReformulationActivity.this, android.R.layout.simple_list_item_1, lesCommentaire);
                 // 	on associe l'adaptateur au composant ListView
-                ListViewCompétence.setAdapter(unAdaptateur2);
+                ListViewReformulation.setAdapter(unAdaptateur2);
             }
         }
     }

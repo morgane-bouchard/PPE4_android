@@ -61,7 +61,7 @@ public class PasserelleCommActiviteCitee extends Passerelle {
         Commentaire leCommentaire;
 
         unId = unObjetJSON.getString("idActivite");
-        uneRef = unObjetJSON.getString("ref");
+        uneRef = unObjetJSON.getString("refSituation");
         unCommentaire = unObjetJSON.getString("commentaire");
 
         leCommentaire = new Commentaire(unId,uneRef,unCommentaire);
