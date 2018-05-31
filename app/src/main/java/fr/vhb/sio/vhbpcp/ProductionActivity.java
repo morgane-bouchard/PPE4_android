@@ -78,11 +78,11 @@ public class ProductionActivity extends Activity{
      * Instancie et exécute un thread séparé pour récupérer les situations professionnelles
      */
     private void initialisations() {
-        listViewProductions = (ListView) findViewById(R.id.listViewSitPros);
-        listViewProductions.setOnItemClickListener(new ListViewOnItemClick());
         uneIntention = getIntent();
+        listViewProductions = (ListView) findViewById(R.id.listViewSitPros);
         this.laSituation = uneIntention.getParcelableExtra("situation");
         new ProductionsGet().execute();
+
     }
 
     /**
