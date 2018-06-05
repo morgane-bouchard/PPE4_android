@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import android.widget.Toast;
  * @author sio2slam
  */
 public class SituationsActivity extends Activity {
+	private Button buttonSyntheseActivite;
 	public static final int CODE_UPDATE = 1;
 	private ListView listViewSitPros;
 	private ArrayList<Situation> lesSitPros;
@@ -71,11 +73,20 @@ public class SituationsActivity extends Activity {
      * Instancie et exécute un thread séparé pour récupérer les situations professionnelles
      */
 	private void initialisations() {
+		this.buttonSyntheseActivite = (Button) this.findViewById(R.id.buttonSyntheseActivite);
 		listViewSitPros = (ListView) findViewById(R.id.listViewSitPros);
 		listViewSitPros.setOnItemClickListener(new ListViewOnItemClick() );
 		new SitProsGet().execute();
-   	}    	
-		
+
+		this.buttonSyntheseActivite.setOnClickListener(new buttonSyntheseActivite());
+	}
+
+	private class buttonSyntheseActivite implements View.OnClickListener {
+		@Override
+		public void onClick(View v) {
+
+		}
+	}
 	/**
 	 * Classe interne pour prendre en charge l'appel à un service web et sa réponse
 	 * La consultation des situations professionnelles fait en ef9

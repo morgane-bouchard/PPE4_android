@@ -22,5 +22,9 @@
         android:id="@+id/itemProduction"
         android:orderInCategory="104"
         android:title="Production" />
+    <item
+        android:id="@+id/SynthesActivite"
+        android:orderInCategory="104"
+        android:title="Synthèse des activitées" />
 </menu>
 

@@ -12,28 +12,15 @@
         android:id="@+id/textViewInviteSPs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/inviteSPs" />
+        android:text="Toutes les activtées de l'étudiant :" />
 
     <ListView
-        android:id="@+id/listViewSitPros"
+        android:id="@+id/listViewActiviteByIdEtud"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewInviteSPs"
         android:layout_below="@+id/textViewInviteSPs"
         android:layout_marginLeft="18dp"
-        android:layout_marginTop="22dp" >
-    </ListView>
-
-    <Button
-        android:id="@+id/buttonSyntheseActivite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewInviteSPs"
-        android:layout_alignBottom="@+id/textViewInviteSPs"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
-        android:text="Synthese des activitées" />
+        android:layout_marginTop="22dp"></ListView>
 
 </RelativeLayout>
