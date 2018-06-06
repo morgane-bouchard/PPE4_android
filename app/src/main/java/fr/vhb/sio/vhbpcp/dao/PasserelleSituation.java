@@ -27,6 +27,7 @@ public class PasserelleSituation extends Passerelle {
 
 	public static final String URL_SITUATIONS_GET = URL_HOTE_WS + "WSSitPros/getByStudent";
     public static final String URL_SITUATION_UPDATE = URL_HOTE_WS + "WSSitPros/update";
+    public static final String URL_SITUATIONS_OBLIG_GET = URL_HOTE_WS + "WSSitPros/getSitObligByStudent";
 	/**
 	 * Fournit la liste des situations professionnelles de l'étudiant spécifié
 	 * @return cette liste d'objets de classe Situation
@@ -151,5 +152,46 @@ public class PasserelleSituation extends Passerelle {
         uneDateFin = Date.valueOf(unObjetJSON.getString("dateFin"));
         uneSituation = new Situation (uneRef, unLibelle, unDescriptif, unCodeLocalisation, unCodeSource, uneDateDebut, uneDateFin);
 		return uneSituation;
+	}
+
+	public static ArrayList<String> getLesSitOblig(Etudiant leVisiteur) throws Exception {
+		ArrayList<String> lesSitOblig = null;
+		String uneSituationOnlig;
+
+		try {
+			String uneUrl = getUrlComplete(URL_SITUATIONS_OBLIG_GET, leVisiteur);
+			HttpURLConnection uneRequeteHttp = prepareHttpRequestGet(uneUrl);
+			JSONObject unObjetJSON = loadResultJSON(uneRequeteHttp);
+
+			// on renvoie une exception si status différent de 0
+			controlStatus(unObjetJSON);
+
+			JSONArray lesSitPros = unObjetJSON.getJSONArray("sitpros");
+
+			/* Exemple de situations professionnelles :
+					<depts>
+			*/
+			// création d'un objet ArrayList en vue de contenir les situations professionnelles
+			lesSitOblig = new ArrayList<String>();
+			// parcours de la liste des noeuds <sitpro>
+			for (int i = 0; i < lesSitPros.length(); i++) {    // création de l'élément courant à chaque tour de boucle
+				JSONObject courant = lesSitPros.getJSONObject(i);
+				// constitution de la situations à partir de toutes les balises contenues dans <sitpro
+				uneSituationOnlig = getSituationObligFromJSONObject(courant);
+				// ajoute la situation à la collection des situations
+				lesSitOblig.add(uneSituationOnlig);
+			}
+		} catch (Exception ex) {
+			Log.e("Passerelle", "Erreur exception : " + ex.toString());
+			throw ex;
+		}
+		return lesSitOblig;
+	}
+
+	private static String getSituationObligFromJSONObject(JSONObject unObjetJSON) throws Exception {
+		String uneSituationOblig;
+
+		uneSituationOblig = "Situation Obligatoire : " + unObjetJSON.getString("libelle")+ "\nNombre de Situtaion Pro : " +unObjetJSON.getString("nbSitPro");
+		return uneSituationOblig;
 	}
 }
